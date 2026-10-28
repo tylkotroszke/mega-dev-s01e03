@@ -1,0 +1,117 @@
+---
+layout: runbook
+title: '#4471 review: date problems, routing and unresolved symptoms'
+owner: Mateusz Sawczuk
+status: reviewed
+reviewed: '2026-10-28'
+signature: 'Mateusz Sawczuk / Codex / S01E03 / 2026-10-28'
+---
+
+<script>
+  import ReviewEvidence from '#lib/kb/ReviewEvidence.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## What changes at the desk
+
+Keep the shared parser problem separate from the booking form's misleading date hint.
+The [original incident page](/kb/incidents/4471) says “one issue, one fix queued”; its own
+rendered cause table shows otherwise. Neither ticket is evidence of a deployed fix.
+
+<Callout kind="warn">
+This review describes the export dated 4 October 2026, not a live queue. The desk continues
+working: refresh reports and tenant configuration before moving live reports or closing a ticket.
+</Callout>
+
+## Two mechanisms described by the supplied KB
+
+The mechanisms below are specified in the exported code and supported by reporter examples.
+We have not run the production parser or form. Report totals are the classifier's routing
+scope, not a claim that every report's underlying cause has been verified. The independent
+body-evidence table below makes that limit visible rather than relying on a footnote.
+
+**Shared parser:** the common parser reads input month first even for a tenant whose locale
+puts the day first. An ambiguous day/month can become a different calendar date. The scope
+includes app and email reports, plus booking-v2 forms; booking-v3 app/email reports still use
+this route. Fix locale-aware parsing or require an unambiguous input format, and verify stored
+dates and invite dates together.
+
+**Booking-v3 hint:** the form displays `MM/DD/YYYY`, but reads the date in the day-first tenant's
+order. A person following the hint can therefore submit a different date from the one intended.
+Align the hint and validation with the actual parser for that tenant. Fixing only the shared
+parser does not correct the form's promise to its user.
+
+The classification uses the tenant directory's locale and form version with the report's
+channel, as implemented in `causes.ts` and `locales.ts`. `meta.intakeTag` is a browser-based
+guess; neither that tag nor `meta.browserLocale` establishes the tenant's settings. Tenant
+configuration is a snapshot, so historical changes would need confirmation from the live desk.
+
+<ReviewEvidence />
+
+## What the existing cause view actually does
+
+<CauseTable ticket={4471} />
+
+The majority group owns the original ticket in this view; the minority has no ticket of its
+own in the export. The ticket-search links above locate the two proposed work items by title,
+without assuming future GitHub issue numbers. After publication, verify that each search finds
+the intended issue.
+The one-day notes remain in the parser ticket's count because that is how the supplied rule
+routes them. Their bodies do not establish a month/day swap: preserve them and investigate
+calendar-day handling, timezone conversion and event ordering before deciding whether a third
+cause exists. Do not claim a confirmed timezone bug, or silently discard those reports.
+
+## How the queue hid this
+
+<QueueTimeline ticket={4471} />
+
+Incoming reports start in April; the first merges happen in July. A July merge spike is backlog
+processing, not evidence that the bug began in July. Incoming reports continue after the batch
+and into October. “Known” means the desk recognizes a problem, not that it is fixed or that new
+reports can be ignored. The original page's review date also precedes the end of this export.
+
+## Why subject-only deduplication fails
+
+<DedupeExplorer />
+
+The accepted [decision 0001](/kb/decisions/0001-dedupe-by-subject) and
+[triage text](/kb/triage/dedupe) prescribe matching normalized subjects. Their review dates are
+stale under the KB's own review policy. The explorer actually compares causes using tenant and
+channel: identical subjects can need different fixes, and different subjects can need one fix.
+Changing punctuation cannot fix that mismatch between the written rule and its working example.
+
+For this export, a booking-v3 form at Alder Physio differs from an app report at the same tenant;
+two form reports at Copper Studio and Morrow Tax also differ because the form versions differ.
+Unknown tenants are not evidence of a shared cause and must stay unmerged pending investigation.
+
+The support desk covers sched-prod and other products. Outside this date incident, do not reuse
+this classifier as a universal merge rule. Read the report, identify the product and affected
+workflow, obtain the configuration and reproduction evidence relevant to that product, and
+merge only when evidence supports the same underlying problem and fix. Preserve report IDs,
+counts and first-received dates. When evidence is missing, keep reports separate for triage.
+
+## Next actions and verification
+
+- Work the two linked tickets separately; each includes reproduction checks and a report count.
+- Investigate the flagged temporal symptoms before closing the parser ticket.
+- Review [proposed decision 0002](/kb/decisions/0002-dedupe-by-evidence) with the desk owner.
+- Before live triage, compare a fresh export with this snapshot by report ID, recheck tenant
+  settings and add new reports without counting repeated export rows twice.
+- After fixes, test both an ambiguous date and a date whose day is greater than twelve through
+  each affected route. Check what the form says, what is stored and what the invite shows.
+- Have the owner update operational triage guidance after approving the replacement decision.
+  Decision 0001 is preserved unchanged as the accepted historical record.
+
+Sources: `reports-4471.json`, every file in `data/tenants`, `desk-notes.json`, `causes.ts`,
+`locales.ts`, the rendered views above, the existing incident page and the two dated policy pages.
+Counts are computed by components from the export; quoted reporter observations remain observations.
+
+Review scope: documentation and proposed work items. Completion of the course requires its
+explicit acceptance after the public repository is submitted; publication alone does not show
+that this review passed. The exported production mechanisms have not been fixed by this work.
+
+<RenderStamp {signature} />

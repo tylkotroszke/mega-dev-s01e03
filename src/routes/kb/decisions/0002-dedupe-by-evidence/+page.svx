@@ -1,0 +1,40 @@
+---
+layout: runbook
+title: '0002 · Proposed: deduplicate by supported cause'
+owner: Mateusz Sawczuk
+status: proposed
+reviewed: '2026-10-28'
+signature: 'Mateusz Sawczuk / Codex / S01E03 / 2026-10-28'
+---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Context
+
+The [review of #4471](/kb/incidents/4471-review) finds different date problems hidden in one
+ticket. The old subject-only rule can merge different causes and split one cause across titles.
+Its interactive example already evaluates causes rather than subjects. The desk handles more
+than one product, so a date-specific classifier cannot safely classify every incoming report.
+
+## Proposed replacement for decision 0001
+
+Use subject text to find candidates, then read the bodies and compare product, workflow,
+tenant configuration, reproduction and the fix needed. Merge only when those facts support
+the same cause. Unknown configuration or inconsistent symptoms require triage, not a blind merge.
+Retain the report IDs, first-received dates, channel and distinct-report count in each ticket.
+
+For this exported date incident, use tenant locale, booking form and channel as the supplied
+classifier does. Check its anomalous one-day observations explicitly before treating its parser
+label as a complete explanation. Refresh evidence before acting on the changing live desk.
+
+## Consequences and status
+
+This costs more reading at intake and avoids hiding a second fix behind “known”. Different
+subjects may merge when the evidence supports one cause; identical subjects may stay separate.
+Preserve decision 0001 unchanged. This proposal replaces it only after desk-owner approval;
+then the owner should update the operational triage page to match and review it again when
+the product, configuration or evidence changes.
+
+<RenderStamp {signature} />
