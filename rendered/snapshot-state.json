@@ -1,0 +1,426 @@
+[
+  {
+    "route": "/kb/incidents/4471-review",
+    "file": "4471-review.html",
+    "title": "#4471 review: date problems, routing and unresolved symptoms · support kb",
+    "fields": [
+      {
+        "checked": false,
+        "label": "tenant",
+        "options": [
+          {
+            "selected": true,
+            "text": "alder.physio",
+            "value": "alder.physio"
+          },
+          {
+            "selected": false,
+            "text": "copper.studio",
+            "value": "copper.studio"
+          },
+          {
+            "selected": false,
+            "text": "harbour.dental",
+            "value": "harbour.dental"
+          },
+          {
+            "selected": false,
+            "text": "kettle.books",
+            "value": "kettle.books"
+          },
+          {
+            "selected": false,
+            "text": "lantern.row",
+            "value": "lantern.row"
+          },
+          {
+            "selected": false,
+            "text": "long.table",
+            "value": "long.table"
+          },
+          {
+            "selected": false,
+            "text": "morrow.tax",
+            "value": "morrow.tax"
+          },
+          {
+            "selected": false,
+            "text": "nine.lanterns",
+            "value": "nine.lanterns"
+          },
+          {
+            "selected": false,
+            "text": "pale.harbour",
+            "value": "pale.harbour"
+          },
+          {
+            "selected": false,
+            "text": "ridge.clinic",
+            "value": "ridge.clinic"
+          },
+          {
+            "selected": false,
+            "text": "stone.and.sons",
+            "value": "stone.and.sons"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "alder.physio"
+      },
+      {
+        "checked": false,
+        "label": "channel",
+        "options": [
+          {
+            "selected": false,
+            "text": "app",
+            "value": "app"
+          },
+          {
+            "selected": false,
+            "text": "email",
+            "value": "email"
+          },
+          {
+            "selected": true,
+            "text": "form",
+            "value": "form"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "form"
+      },
+      {
+        "checked": false,
+        "label": "subject",
+        "tag": "input",
+        "type": "text",
+        "value": "Booking on the wrong date"
+      },
+      {
+        "checked": false,
+        "label": "tenant",
+        "options": [
+          {
+            "selected": false,
+            "text": "alder.physio",
+            "value": "alder.physio"
+          },
+          {
+            "selected": false,
+            "text": "copper.studio",
+            "value": "copper.studio"
+          },
+          {
+            "selected": false,
+            "text": "harbour.dental",
+            "value": "harbour.dental"
+          },
+          {
+            "selected": true,
+            "text": "kettle.books",
+            "value": "kettle.books"
+          },
+          {
+            "selected": false,
+            "text": "lantern.row",
+            "value": "lantern.row"
+          },
+          {
+            "selected": false,
+            "text": "long.table",
+            "value": "long.table"
+          },
+          {
+            "selected": false,
+            "text": "morrow.tax",
+            "value": "morrow.tax"
+          },
+          {
+            "selected": false,
+            "text": "nine.lanterns",
+            "value": "nine.lanterns"
+          },
+          {
+            "selected": false,
+            "text": "pale.harbour",
+            "value": "pale.harbour"
+          },
+          {
+            "selected": false,
+            "text": "ridge.clinic",
+            "value": "ridge.clinic"
+          },
+          {
+            "selected": false,
+            "text": "stone.and.sons",
+            "value": "stone.and.sons"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "kettle.books"
+      },
+      {
+        "checked": false,
+        "label": "channel",
+        "options": [
+          {
+            "selected": false,
+            "text": "app",
+            "value": "app"
+          },
+          {
+            "selected": false,
+            "text": "email",
+            "value": "email"
+          },
+          {
+            "selected": true,
+            "text": "form",
+            "value": "form"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "form"
+      },
+      {
+        "checked": false,
+        "label": "subject",
+        "tag": "input",
+        "type": "text",
+        "value": "Booking on the wrong date"
+      }
+    ],
+    "capturedBodySha256": "30a50c027f0cc378612e5705a69de62ca8eea322f5625be46f702c37725a3e8b"
+  },
+  {
+    "route": "/kb",
+    "file": "index.html",
+    "title": "Support knowledge base · support kb",
+    "fields": [],
+    "capturedBodySha256": "c9e6b2b523ea537b6f1deb63560210746c6189fd463831f9359d9cbec155bb68"
+  },
+  {
+    "route": "/kb/incidents/4471",
+    "file": "4471-original.html",
+    "title": "#4471 · dates parse mm/dd in eu locales · support kb",
+    "fields": [],
+    "capturedBodySha256": "1f69db26878fa6ac01fb16601ccd2ebd21e5eb3602957efc357b55caedf49088"
+  },
+  {
+    "route": "/kb/triage/dedupe",
+    "file": "dedupe.html",
+    "title": "Triage: duplicate reports · support kb",
+    "fields": [
+      {
+        "checked": false,
+        "label": "tenant",
+        "options": [
+          {
+            "selected": true,
+            "text": "alder.physio",
+            "value": "alder.physio"
+          },
+          {
+            "selected": false,
+            "text": "copper.studio",
+            "value": "copper.studio"
+          },
+          {
+            "selected": false,
+            "text": "harbour.dental",
+            "value": "harbour.dental"
+          },
+          {
+            "selected": false,
+            "text": "kettle.books",
+            "value": "kettle.books"
+          },
+          {
+            "selected": false,
+            "text": "lantern.row",
+            "value": "lantern.row"
+          },
+          {
+            "selected": false,
+            "text": "long.table",
+            "value": "long.table"
+          },
+          {
+            "selected": false,
+            "text": "morrow.tax",
+            "value": "morrow.tax"
+          },
+          {
+            "selected": false,
+            "text": "nine.lanterns",
+            "value": "nine.lanterns"
+          },
+          {
+            "selected": false,
+            "text": "pale.harbour",
+            "value": "pale.harbour"
+          },
+          {
+            "selected": false,
+            "text": "ridge.clinic",
+            "value": "ridge.clinic"
+          },
+          {
+            "selected": false,
+            "text": "stone.and.sons",
+            "value": "stone.and.sons"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "alder.physio"
+      },
+      {
+        "checked": false,
+        "label": "channel",
+        "options": [
+          {
+            "selected": false,
+            "text": "app",
+            "value": "app"
+          },
+          {
+            "selected": false,
+            "text": "email",
+            "value": "email"
+          },
+          {
+            "selected": true,
+            "text": "form",
+            "value": "form"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "form"
+      },
+      {
+        "checked": false,
+        "label": "subject",
+        "tag": "input",
+        "type": "text",
+        "value": "Booking on the wrong date"
+      },
+      {
+        "checked": false,
+        "label": "tenant",
+        "options": [
+          {
+            "selected": false,
+            "text": "alder.physio",
+            "value": "alder.physio"
+          },
+          {
+            "selected": false,
+            "text": "copper.studio",
+            "value": "copper.studio"
+          },
+          {
+            "selected": false,
+            "text": "harbour.dental",
+            "value": "harbour.dental"
+          },
+          {
+            "selected": true,
+            "text": "kettle.books",
+            "value": "kettle.books"
+          },
+          {
+            "selected": false,
+            "text": "lantern.row",
+            "value": "lantern.row"
+          },
+          {
+            "selected": false,
+            "text": "long.table",
+            "value": "long.table"
+          },
+          {
+            "selected": false,
+            "text": "morrow.tax",
+            "value": "morrow.tax"
+          },
+          {
+            "selected": false,
+            "text": "nine.lanterns",
+            "value": "nine.lanterns"
+          },
+          {
+            "selected": false,
+            "text": "pale.harbour",
+            "value": "pale.harbour"
+          },
+          {
+            "selected": false,
+            "text": "ridge.clinic",
+            "value": "ridge.clinic"
+          },
+          {
+            "selected": false,
+            "text": "stone.and.sons",
+            "value": "stone.and.sons"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "kettle.books"
+      },
+      {
+        "checked": false,
+        "label": "channel",
+        "options": [
+          {
+            "selected": false,
+            "text": "app",
+            "value": "app"
+          },
+          {
+            "selected": false,
+            "text": "email",
+            "value": "email"
+          },
+          {
+            "selected": true,
+            "text": "form",
+            "value": "form"
+          }
+        ],
+        "tag": "select",
+        "type": "select-one",
+        "value": "form"
+      },
+      {
+        "checked": false,
+        "label": "subject",
+        "tag": "input",
+        "type": "text",
+        "value": "Booking on the wrong date"
+      }
+    ],
+    "capturedBodySha256": "6324d0955b5d78c29d618e12f08141dc9e25d6b6058f82ca249c61654921204e"
+  },
+  {
+    "route": "/kb/decisions/0001-dedupe-by-subject",
+    "file": "decision-0001.html",
+    "title": "0001 · Duplicates share a subject line · support kb",
+    "fields": [],
+    "capturedBodySha256": "4c951b993ba96f44a09b75181b3b548ffdfe8ebe3772a77dcf5250405c591f81"
+  },
+  {
+    "route": "/kb/decisions/0002-dedupe-by-evidence",
+    "file": "decision-0002.html",
+    "title": "0002 · Proposed: deduplicate by supported cause · support kb",
+    "fields": [],
+    "capturedBodySha256": "3ad03341522c08775c7d913445307264e96f7094640c2816c5ea1a91cc5736c2"
+  }
+]

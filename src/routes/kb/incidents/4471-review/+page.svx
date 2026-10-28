@@ -19,7 +19,7 @@ signature: 'Mateusz Sawczuk / Codex / S01E03 / 2026-10-28'
 ## What changes at the desk
 
 Keep the shared parser problem separate from the booking form's misleading date hint.
-Keep the desk-flagged temporal reports in their own investigation, outside both mechanism tickets.
+Keep a separate work item for each mechanism described by the exported KB.
 The [original incident page](/kb/incidents/4471) says “one issue, one fix queued”; its own
 rendered cause table shows otherwise. No ticket is evidence of a deployed fix.
 
@@ -46,17 +46,17 @@ order. A person following the hint can therefore submit a different date from th
 Align the hint and validation with the actual parser for that tenant. Fixing only the shared
 parser does not correct the form's promise to its user.
 
-**Temporal inconsistencies:** reports of one-day shifts, differing calendar days and invite/event
-ordering need a separate investigation. A shared-parser label does not explain those observations.
-We can track this reported problem before its implementation root cause is known; do not assume
-that a month/day parser fix resolves it or assert an unverified timezone diagnosis.
+**Qualified observations:** the desk notes describe temporal symptoms in some reports. The
+export's `readAs` convention explicitly says to count those reports in their assigned group
+and footnote them. Preserve their wording and uncertainty; the note list alone does not
+establish an independent mechanism or justify an additional issue.
 
 The classification uses the tenant directory's locale and form version with the report's
 channel, as implemented in `causes.ts` and `locales.ts`. `meta.intakeTag` is a browser-based
 guess; neither that tag nor `meta.browserLocale` establishes the tenant's settings. Tenant
 configuration is a snapshot, so historical changes would need confirmation from the live desk.
-The corrected work-item partition also checks the desk-flagged IDs first, in `triage.ts`,
-so the temporal observations cannot be counted in either formatting ticket.
+The report counts follow this specified grouping after deduplication. Report bodies and desk
+notes remain available for checking what the grouping does and does not establish.
 
 <ReviewEvidence />
 
@@ -65,24 +65,23 @@ so the temporal observations cannot be counted in either formatting ticket.
 <CauseTable ticket={4471} />
 
 The majority group owns the original ticket in this view; the minority has no ticket of its
-own in the export. This is the original view, not the corrected work-item partition above.
-The ticket-search links above locate three proposed work items by title,
+own in the export. This view and the report table above use the same grouping.
+The ticket-search links above locate the work items by title,
 without assuming future GitHub issue numbers. After publication, verify that each search finds
 the intended issue.
-The original rule counts desk-flagged temporal reports as parser reports without reading their
-bodies. In the corrected work items those IDs are removed from parser scope and counted only
-in the separate temporal ticket. Unknown implementation cause is a reason to investigate the
-distinct behavior, not to keep it buried in the parser ticket. Preserve the exact observations;
-do not claim a confirmed timezone bug or silently discard reports.
+Desk-noted IDs stay counted once in parser scope, with their observations and limits
+shown above. This follows the exported counting convention, not proof that each body has a
+demonstrated parser root cause. A future independent problem needs evidence of its own; the
+note list does not establish an additional cause. Do not infer a confirmed timezone defect from the wording.
 
 ## How the queue hid this
 
 <QueueTimeline ticket={4471} />
 
-Incoming reports start in April; the first merges happen in July. A July merge spike is backlog
-processing, not evidence that the bug began in July. Incoming reports continue after the batch
-and into October. “Known” means the desk recognizes a problem, not that it is fixed or that new
-reports can be ignored. The original page's review date also precedes the end of this export.
+The received and merged series measure different events. A merge spike can reflect processing
+older reports; it does not establish when the bug began. Read the received series to track
+incoming reports. “Known” means the desk recognizes a problem, not that it is fixed or that new
+reports can be ignored. Compare the review metadata with the reporting period shown by the components.
 
 ## Why subject-only deduplication fails
 
@@ -97,7 +96,7 @@ The explorer itself has no report-body or report-ID input. It demonstrates forma
 it cannot establish that a temporal observation has the same cause as a parser report.
 
 For this export, a booking-v3 form at Alder Physio differs from an app report at the same tenant;
-two form reports at Copper Studio and Morrow Tax also differ because the form versions differ.
+form reports at Copper Studio and Morrow Tax also differ because the form versions differ.
 Unknown tenants are not evidence of a shared cause and must stay unmerged pending investigation.
 
 The support desk covers sched-prod and other products. Outside this date incident, do not reuse
@@ -108,8 +107,9 @@ counts and first-received dates. When evidence is missing, keep reports separate
 
 ## Next actions and verification
 
-- Work the three linked tickets separately; each has a distinct report scope and acceptance checks.
-- Investigate the temporal ticket independently; do not close it on the basis of a parser fix.
+- Work the linked mechanisms separately; each issue has its own narrowly defined fix and checks.
+- Preserve and review desk-noted observations without counting their IDs a second time or treating
+  a footnote as proof of an additional cause.
 - Review [proposed decision 0002](/kb/decisions/0002-dedupe-by-evidence) with the desk owner.
 - Before live triage, compare a fresh export with this snapshot by report ID, recheck tenant
   settings and add new reports without counting repeated export rows twice.
@@ -121,9 +121,5 @@ counts and first-received dates. When evidence is missing, keep reports separate
 Sources: `reports-4471.json`, every file in `data/tenants`, `desk-notes.json`, `causes.ts`,
 `locales.ts`, the rendered views above, the existing incident page and the two dated policy pages.
 Counts are computed by components from the export; quoted reporter observations remain observations.
-
-Review scope: documentation and proposed work items. Completion of the course requires its
-explicit acceptance after the public repository is submitted; publication alone does not show
-that this review passed. The exported production mechanisms have not been fixed by this work.
 
 <RenderStamp {signature} />

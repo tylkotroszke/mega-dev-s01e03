@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>0002 · Proposed: deduplicate by supported cause · support kb</title><style>
+  :root {
+    --bg: #fbfaf7; --fg: #1d1d1b; --muted: #6b6a66; --line: #e3e0d8;
+    --accent: #2f6f5e; --warn: #b4501f; --warn-bg: #fbeee6; --note-bg: #eef5f2;
+    --mono: ui-monospace, 'Cascadia Code', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171716; --fg: #ecebe6; --muted: #9c9a93; --line: #34332f;
+      --accent: #6fbfa6; --warn: #f0905d; --warn-bg: #3a2418; --note-bg: #1d2c27;
+    }
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; }
+  .kb table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
+  .kb th, .kb td { border-bottom: 1px solid var(--line); padding: 0.35rem 0.5rem; text-align: left; }
+  .kb code { font-family: var(--mono); font-size: 0.88em; }
+  .kb a { color: var(--accent); }
+  .kb.svelte-e2jw2j { max-width: 760px; margin: 0 auto; padding: 2rem 16px 4rem; }
+  .crumb.svelte-e2jw2j { font: 0.8rem var(--mono); text-decoration: none; color: var(--muted); }
+  h1.svelte-e2jw2j { margin: 0.25rem 0 0.5rem; line-height: 1.2; }
+  .meta.svelte-e2jw2j { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .status.svelte-e2jw2j { border: 1px solid var(--line); border-radius: 99px; padding: 0 0.6rem; }
+  .stale.svelte-e2jw2j { color: var(--warn); font-weight: 600; }
+  .banner.svelte-e2jw2j { background: var(--warn-bg); color: var(--warn); padding: 0.6rem 1rem; border-radius: 6px; }
+  footer.svelte-e2jw2j { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+ .svelte-e2jw2j{}
+
+  .stamp.svelte-1280m42 { margin: 2rem 0 0; font: 0.85rem var(--mono); color: var(--muted); }
+  .stamp.svelte-1280m42 b:where(.svelte-1280m42) { color: var(--accent); letter-spacing: 0.04em; }
+  .missing.svelte-1280m42 { color: var(--warn); }
+ .svelte-1280m42{}
+
+  .report.svelte-d54a26 { margin: 1.25rem 0; padding: 0 0 0.5rem; border-bottom: 1px solid var(--line); }
+  h3.svelte-d54a26 { font-size: 1rem; margin-bottom: 0.25rem; }
+  .report.svelte-d54a26 p:where(.svelte-d54a26) { color: var(--muted); font-size: 0.85rem; margin-top: 0; }
+  blockquote.svelte-d54a26 { margin: 0.5rem 0; border-left: 3px solid var(--line); padding-left: 1rem; }
+ .svelte-d54a26{}
+
+  .sum.svelte-12oyimm { font-size: 1.1rem; }
+  .tags.svelte-12oyimm { color: var(--muted); font-size: 0.85em; }
+  .note.svelte-12oyimm { color: var(--muted); font-size: 0.85em; }
+  .wrong.svelte-12oyimm td:where(.svelte-12oyimm) { background: var(--warn-bg); }
+  .wrong.svelte-12oyimm td:where(.svelte-12oyimm):last-child { color: var(--warn); font-weight: 600; }
+ .svelte-12oyimm{}
+
+  svg.svelte-18a6qal { width: 100%; max-width: 640px; }
+  .in.svelte-18a6qal { fill: var(--warn); }
+  .merged.svelte-18a6qal { fill: var(--accent); }
+  text.svelte-18a6qal { font: 8px var(--mono); fill: var(--muted); text-anchor: middle; }
+  figcaption.svelte-18a6qal { color: var(--muted); font-size: 0.85rem; }
+  .key.svelte-18a6qal { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 2px; }
+  .key.in.svelte-18a6qal { background: var(--warn); }
+  .key.merged.svelte-18a6qal { background: var(--accent); }
+ .svelte-18a6qal{}
+
+  .try.svelte-gq0h2h { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+  fieldset.svelte-gq0h2h { display: grid; gap: 0.4rem; border: 1px solid var(--line); border-radius: 6px; }
+  .verdict.svelte-gq0h2h { grid-column: 1 / -1; margin: 0; font-weight: 600; color: var(--muted); }
+  .dup.svelte-gq0h2h { color: var(--accent); font-weight: 600; }
+ .svelte-gq0h2h{}
+
+  aside.svelte-17bri61 { border-left: 4px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem 0; background: var(--note-bg); }
+  aside.warn.svelte-17bri61 { border-color: var(--warn); background: var(--warn-bg); }
+ .svelte-17bri61{}
+
+  .stale.svelte-tbc1ha { color: var(--warn); font-weight: 600; }
+ .svelte-tbc1ha{}
+.saved-view{max-width:760px;margin:1rem auto 0;padding:.5rem 16px;color:var(--muted);font:13px/1.5 system-ui;}</style></head><body><aside class="saved-view">Saved view · controls show captured values and are read-only. KB links open other saved pages.</aside><div class="kb svelte-e2jw2j"><header class="svelte-e2jw2j"><a class="crumb svelte-e2jw2j" href="index.html">support desk · kb</a> <h1 class="svelte-e2jw2j">0002 · Proposed: deduplicate by supported cause</h1> <p class="meta svelte-e2jw2j"><span class="svelte-e2jw2j">owner <b class="svelte-e2jw2j">Mateusz Sawczuk</b></span> <span class="status proposed svelte-e2jw2j">proposed</span> <span class="svelte-e2jw2j">reviewed 2026-10-28 · 0 days ago</span></p></header> <!----> <main class="svelte-e2jw2j"><h2>Context</h2> <p>The <a href="4471-review.html">review of #4471</a> finds different date problems hidden in one
+ticket. The old subject-only rule can merge different causes and split one cause across titles.
+Its interactive example already evaluates causes rather than subjects. The desk handles more
+than one product, so a date-specific classifier cannot safely classify every incoming report.</p> <h2>Proposed replacement for decision 0001</h2> <p>Use subject text to find candidates, then read the bodies and compare product, workflow,
+tenant configuration, reproduction and the fix needed. Merge only when those facts support
+the same cause. Unknown configuration or inconsistent symptoms require triage, not a blind merge.
+Retain the report IDs, first-received dates, channel and distinct-report count in each ticket.</p> <p>For this exported date incident, tenant locale, booking form and channel help distinguish
+formatting mechanisms. The exported convention counts desk-noted temporal observations in their
+assigned group and preserves them in a footnote. Keep that distinction: an observation is not
+automatically a separate cause, and a routing label does not prove every report’s mechanism.
+Seek evidence before merging or separating work. Refresh evidence before acting on the live desk.</p> <h2>Consequences and status</h2> <p>This costs more reading at intake and avoids hiding a second fix behind “known”. Different
+subjects may merge when the evidence supports one cause; identical subjects may stay separate.
+Preserve decision 0001 unchanged. This proposal replaces it only after desk-owner approval;
+then the owner should update the operational triage page to match and review it again when
+the product, configuration or evidence changes.</p> <!----><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-XZQ3-YZWV</b></p><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div></body></html>

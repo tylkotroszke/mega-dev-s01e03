@@ -26,10 +26,10 @@ the same cause. Unknown configuration or inconsistent symptoms require triage, n
 Retain the report IDs, first-received dates, channel and distinct-report count in each ticket.
 
 For this exported date incident, tenant locale, booking form and channel help distinguish
-formatting mechanisms. Keep desk-flagged temporal observations in a separate investigation,
-outside the parser and form-hint counts. A classifier that ignores report bodies can hide a
-distinct problem even when it produces exact totals. Unknown root cause does not justify merging
-different observed behavior. Refresh evidence before acting on the changing live desk.
+formatting mechanisms. The exported convention counts desk-noted temporal observations in their
+assigned group and preserves them in a footnote. Keep that distinction: an observation is not
+automatically a separate cause, and a routing label does not prove every report's mechanism.
+Seek evidence before merging or separating work. Refresh evidence before acting on the live desk.
 
 ## Consequences and status
 

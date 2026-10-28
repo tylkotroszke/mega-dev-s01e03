@@ -7,8 +7,10 @@ Prepared from the support KB export dated 2026-10-04. This repository contains o
 - Signed review source: `src/routes/kb/incidents/4471-review/+page.svx`.
 - Complete rendered DOM and styles from the actual browser view: `rendered/4471-review.html`.
 - Browser screenshot of the reconciliation tables: `rendered/4471-review.jpg`.
+- Saved KB index and linked pages: `rendered/index.html` and the other local HTML files.
+- Captured control-state reference: `rendered/snapshot-state.json`.
 - Proposed successor decision: `src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx`.
-- GitHub issue bodies: `tickets/01-parser.md`, `tickets/02-form-hint.md` and `tickets/03-temporal.md`.
+- Proposed active GitHub issue bodies: `tickets/01-parser.md` and `tickets/02-form-hint.md`.
 
 The KB's original accepted decision, triage page, data, classification logic and components remain unchanged. The new review is found automatically by the KB index. Decision 0002 is a proposal pending desk-owner approval.
 
@@ -18,14 +20,16 @@ Requires Node.js 24 and npm. Run `npm ci --ignore-scripts --no-audit --no-fund`,
 
 `npm run build` checks the complete KB bundle. `node scripts/verify.mjs` checks snapshot reconciliation using the supplied classifier. The lockfile pins build dependencies.
 
-The HTML capture is a static snapshot of the real rendered DOM, including computed tables, chart and desk ref. Its explorer controls are illustrative in the capture; run the app for the interactive explorer. The JPEG shows the reconciliation tables. Neither file is a hand-written substitute for the compiled `.svx`.
+The saved HTML pages retain the real rendered text, computed tables, SVG charts and desk ref. Their select and input values are serialized from properties read in the live browser. Controls are explicitly read-only in the saved view, and internal KB links point to the other saved HTML files in the same folder. Run the source app for the interactive explorer. The JPEG shows the live source page's reconciliation tables.
+
+Export tooling: `scripts/export_snapshots.py` takes a JSON capture of the live pages' DOM, styles and control properties. `scripts/verify_snapshots.py` checks the resulting saved files against that capture: control values, read-only state, visible text, unchanged SVG and existence of every local link target. Checks of saved files use a local parser; a successful build alone is not evidence that export state is correct.
 
 ## Interpretation limits
 
-The supplied classifier produces 379 parser and 33 hint reports, but it ignores report bodies and hides five desk-flagged temporal observations within parser scope. Corrected work items separate parser 374, form hint 33 and temporal five. The scopes cover all 412 distinct reports without overlap. Separating the reported temporal problem does not establish a timezone root cause. All counts describe the export, not the changing live queue. No production fix or live desk change is claimed.
+The supplied KB specifies two mechanisms, producing 379 parser and 33 hint reports after deduplication. Its readAs convention says to count desk-noted observations in their assigned group with a footnote. The two scopes cover all 412 distinct IDs without overlap. Counts and observed symptoms do not certify every production root cause. All totals describe the export, not the changing live queue; no production fix is claimed.
 
-The independent body-evidence view shows parser 370 explicitly swapped date pairs plus four general descriptions, hint 33 explicitly swapped pairs, and five flagged temporal observations exclusively in their own work item. This distinguishes symptom evidence from classifier routing and does not certify production root causes. Ticket links search by title rather than assuming GitHub issue numbers.
+The body-evidence view retains parser's 370 explicitly swapped date pairs, five desk-noted temporal observations and four general descriptions; hint has 33 explicitly swapped pairs. The five observations are preserved verbatim and counted once. They are not automatically promoted to a third cause. Ticket links search by title rather than assuming GitHub issue numbers.
 
 ## Course handoff
 
-Publishing the repository and creating its GitHub issues prepares the deliverable. The repository must then be submitted to the course and explicitly accepted. The initial two-ticket submission was rejected; the course said one ticket covered two problems. This revision separates the desk-flagged temporal reports into their own investigation. Neither publication nor local checks establish acceptance. The course's solved reply governs the following debrief.
+This is a local draft of a further correction after two rejected submissions. It proposes two narrow issue scopes and retaining the five observations in a KB footnote. The hypothesis that the first rejection concerned the breadth of an issue body is unconfirmed; the course did not identify the exact problem pair. No new submission or acceptance is implied. Future publication and a new course claim require the owner's separate decision.
