@@ -195,7 +195,7 @@
         "value": "Booking on the wrong date"
       }
     ],
-    "capturedBodySha256": "abbc04cad005736b08f73618e2d3bbf65a4b8e188fda05319bbeefb9d93d7be6"
+    "capturedBodySha256": "e1857b6b868396842023df0d0442f501f0104beac0a466a0ce9e8d2965b6dd57"
   },
   {
     "route": "/kb",
@@ -421,6 +421,6 @@
     "file": "decision-0002.html",
     "title": "0002 · Proposed: deduplicate by supported cause · support kb",
     "fields": [],
-    "capturedBodySha256": "3ad03341522c08775c7d913445307264e96f7094640c2816c5ea1a91cc5736c2"
+    "capturedBodySha256": "0a8f664128150e189be9df6c00c8ec106949672c1e99fe811b5644e9d03cc7fb"
   }
 ]
