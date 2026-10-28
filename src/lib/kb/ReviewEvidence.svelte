@@ -4,9 +4,15 @@
   import { uniqueById, groupByCause, causeOf, type Report } from '#lib/kb/causes';
   import { tenantOf } from '#lib/kb/locales';
   import { bodyEvidence } from '#lib/kb/body-evidence';
+  import { problemOf, type Problem } from '#lib/kb/triage';
 
   const reports = uniqueById(raw as Report[]).filter((r) => r.mergedInto === 4471);
-  const groups = groupByCause(reports, tenantOf);
+  const legacyGroups = groupByCause(reports, tenantOf);
+  const groups = (['parser', 'hint', 'temporal', 'unplaced'] as Problem[]).map((cause) => {
+    const rs = reports.filter((r) => problemOf(r, causeOf(r, tenantOf(r)), notes.oneDayMove) === cause);
+    const dates = rs.map((r) => r.receivedAt.slice(0, 10)).sort();
+    return { cause, reports: rs, firstSeen: dates[0], lastSeen: dates.at(-1), tenants: new Set(rs.map((r) => r.tenant)).size };
+  }).filter((g) => g.reports.length > 0);
   const misTagged = reports.filter((r) => r.meta.intakeTag !== causeOf(r, tenantOf(r)));
   const oneDay = reports.filter((r) => notes.oneDayMove.includes(r.id));
   const months = [...new Set(reports.map((r) => r.receivedAt.slice(0, 7)))].sort();
@@ -15,13 +21,14 @@
   const tickets: Record<string, { label: string; href: string }> = {
     parser: { label: 'Find parser ticket', href: 'https://github.com/tylkotroszke/mega-dev-s01e03/issues?q=is%3Aissue%20in%3Atitle%20%22Shared%20month-first%20parser%22' },
     hint: { label: 'Find form hint ticket', href: 'https://github.com/tylkotroszke/mega-dev-s01e03/issues?q=is%3Aissue%20in%3Atitle%20%22Booking-v3%20promises%20MM%2FDD%22' },
+    temporal: { label: 'Find temporal ticket', href: 'https://github.com/tylkotroszke/mega-dev-s01e03/issues?q=is%3Aissue%20in%3Atitle%20%22One-day%20shifts%20and%20temporal%20inconsistencies%22' },
   };
 </script>
 
 <h2>Reconciled report counts</h2>
 <p>{raw.length} exported rows − {raw.length - reports.length} repeated rows = <strong>{reports.length} unique reports</strong> in #4471. Repeated IDs have identical payloads in this snapshot.</p>
 <table>
-  <thead><tr><th>Classifier routing / ticket search</th><th>Routed reports</th><th>Period received</th><th>Scope</th></tr></thead>
+  <thead><tr><th>Separate work item / ticket search</th><th>Distinct reports</th><th>Period received</th><th>Scope</th></tr></thead>
   <tbody>
     {#each groups as g (g.cause)}
       <tr>
@@ -43,7 +50,7 @@
   </tbody>
 </table>
 <p>This second table reads explicit English date pairs in the bodies and flags from desk notes. It describes reported symptoms independently of tenant-based routing; it neither reproduces the product nor confirms a root cause. A description without a swapped pair is not evidence that no formatting problem occurred.</p>
-<p>Intake labels disagree with tenant-based classification for <strong>{misTagged.length}</strong> reports. The <code>parser</code> group includes <strong>{oneDay.length}</strong> reports flagged by desk notes as one-day moves; this is their current routing, not proof that month/day parsing explains each symptom.</p>
+<p>The old tenant-based classifier puts <strong>{legacyGroups.find((g) => g.cause === 'parser')?.reports.length}</strong> reports under <code>parser</code>, including <strong>{oneDay.length}</strong> desk-flagged temporal reports. Those flagged IDs now belong exclusively to the temporal work item. Intake labels disagree with the old tenant classifier for <strong>{misTagged.length}</strong> reports; neither label source is a substitute for reading the reported behavior.</p>
 
 <h2>Received is different from merged</h2>
 <table>

@@ -45,6 +45,17 @@ assert.equal(bodyEvidence({ id: 'example', body: 'Booked for 5 May. The invite s
 assert.equal(bodyEvidence({ id: 'flagged', body: 'The invite arrived before the booking.' }, ['flagged']), 'flagged-time');
 const evidenceTotals = Object.fromEntries(groups.map((g) => [g.cause, Object.fromEntries(['reported-swap', 'flagged-time', 'other-description'].map((kind) => [kind, g.reports.filter((r) => bodyEvidence(r, flagged) === kind).length]))]));
 assert.deepEqual(evidenceTotals, { parser: { 'reported-swap': 370, 'flagged-time': 5, 'other-description': 4 }, hint: { 'reported-swap': 33, 'flagged-time': 0, 'other-description': 0 } });
+const triageCode = fs.readFileSync(new URL('src/lib/kb/triage.ts', root), 'utf8');
+const { problemOf } = await import(`data:text/javascript;base64,${Buffer.from(stripTypeScriptTypes(triageCode)).toString('base64')}`);
+const workItems = Object.fromEntries(['parser', 'hint', 'temporal', 'unplaced'].map((kind) => [kind, reports.filter((r) => problemOf(r, causeOf(r, tenantOf(r)), flagged) === kind)]));
+assert.deepEqual(Object.fromEntries(Object.entries(workItems).map(([k,rs])=>[k,rs.length])), { parser:374, hint:33, temporal:5, unplaced:0 });
+assert.deepEqual(workItems.temporal.map(r=>r.id).sort(), [...flagged].sort());
+assert.ok(workItems.parser.every(r=>!flagged.includes(r.id)));
+assert.ok(workItems.hint.every(r=>!flagged.includes(r.id)));
+assert.equal(Object.values(workItems).flat().length,412);
+assert.equal(new Set(Object.values(workItems).flat().map(r=>r.id)).size,412);
+assert.equal(problemOf({id:'flagged'}, 'parser', ['flagged']), 'temporal');
+assert.equal(problemOf({id:'unknown'}, null, []), 'unplaced');
 const viewSource = fs.readFileSync(new URL('src/lib/kb/ReviewEvidence.svelte', root), 'utf8');
 assert.ok(!/\/issues\/\d+/.test(viewSource), 'Do not assume future GitHub issue numbers');
-console.log('PASS: snapshot reconciliation, tenant routing, independent body-evidence categories, date-pair counterexamples, timeline and issue links without assumed numbers.');
+console.log('PASS: original routing retained for comparison; corrected 374/33/5 work items are exhaustive and disjoint, all temporal IDs excluded from mechanism tickets; body evidence, counterexamples, timeline and links checked.');

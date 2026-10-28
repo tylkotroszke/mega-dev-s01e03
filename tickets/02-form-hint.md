@@ -10,7 +10,7 @@ The supplied KB specifies that the booking-v3 date field displays `MM/DD/YYYY`, 
 - Copper Studio (`copper.studio`, `es-ES`): 11 reports.
 - Pale Harbour (`pale.harbour`, `pt-PT`): 10 reports.
 
-These 33 plus the 379 reports in the parser ticket account for all 412 unique source reports, with no overlap. Tenant configuration and channel establish this grouping; intake tags are guesses.
+These 33 plus 374 reports in the parser ticket and five separately investigated temporal reports account for all 412 unique source reports, with no overlap. Tenant configuration and channel establish the form-hint grouping; intake tags are guesses. Desk-flagged temporal reports are excluded from both mechanism tickets.
 
 All 33 bodies contain explicit swapped day/month pairs. That supports the reported symptom, while the supplied tenant/form/channel specification establishes the proposed mechanism. Neither is a live reproduction. Counts describe the 2026-10-04 export, not the live queue on the review date.
 

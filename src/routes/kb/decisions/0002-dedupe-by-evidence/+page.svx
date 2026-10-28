@@ -25,9 +25,11 @@ tenant configuration, reproduction and the fix needed. Merge only when those fac
 the same cause. Unknown configuration or inconsistent symptoms require triage, not a blind merge.
 Retain the report IDs, first-received dates, channel and distinct-report count in each ticket.
 
-For this exported date incident, use tenant locale, booking form and channel as the supplied
-classifier does. Check its anomalous one-day observations explicitly before treating its parser
-label as a complete explanation. Refresh evidence before acting on the changing live desk.
+For this exported date incident, tenant locale, booking form and channel help distinguish
+formatting mechanisms. Keep desk-flagged temporal observations in a separate investigation,
+outside the parser and form-hint counts. A classifier that ignores report bodies can hide a
+distinct problem even when it produces exact totals. Unknown root cause does not justify merging
+different observed behavior. Refresh evidence before acting on the changing live desk.
 
 ## Consequences and status
 
