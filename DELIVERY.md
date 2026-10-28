@@ -10,7 +10,7 @@ Prepared from the support KB export dated 2026-10-04. This repository contains o
 - Saved KB index and linked pages: `rendered/index.html` and the other local HTML files.
 - Captured control-state reference: `rendered/snapshot-state.json`.
 - Proposed successor decision: `src/routes/kb/decisions/0002-dedupe-by-evidence/+page.svx`.
-- Proposed active GitHub issue bodies: `tickets/01-parser.md` and `tickets/02-form-hint.md`.
+- Original GitHub issue bodies: `tickets/01-parser.md` and `tickets/02-form-hint.md`; closure outcomes are recorded separately in issue comments and the signed review.
 
 The KB's original accepted decision, triage page, data, classification logic and components remain unchanged. The new review is found automatically by the KB index. Decision 0002 is a proposal pending desk-owner approval.
 
@@ -26,10 +26,12 @@ Export tooling: `scripts/export_snapshots.py` takes a JSON capture of the live p
 
 ## Interpretation limits
 
-The supplied KB specifies two mechanisms, producing 379 parser and 33 hint reports after deduplication. Its readAs convention says to count desk-noted observations in their assigned group with a footnote. The two scopes cover all 412 distinct IDs without overlap. Counts and observed symptoms do not certify every production root cause. All totals describe the export, not the changing live queue; no production fix is claimed.
+The supplied KB specifies two mechanisms, producing 379 parser and 33 hint reports after deduplication. Its readAs convention says to count desk-noted observations in their assigned group with a footnote. The two scopes cover all 412 distinct IDs without overlap. Counts and observed symptoms do not certify every production root cause. All totals describe the export, not the changing live queue. The course's later engineering report is distinguished below from independent production verification.
 
 The body-evidence view retains parser's 370 explicitly swapped date pairs, five desk-noted temporal observations and four general descriptions; hint has 33 explicitly swapped pairs. The five observations are preserved verbatim and counted once. They are not automatically promoted to a third cause. Ticket links search by title rather than assuming GitHub issue numbers.
 
 ## Course handoff
 
-This is a local draft of a further correction after two rejected submissions. It proposes two narrow issue scopes and retaining the five observations in a KB footnote. The hypothesis that the first rejection concerned the breadth of an issue body is unconfirmed; the course did not identify the exact problem pair. No new submission or acceptance is implied. Future publication and a new course claim require the owner's separate decision.
+The course accepted the two narrow issue scopes as step one, while explicitly saying the challenge is not solved. After that acceptance, its challenge page exposed an engineering update: #4471 closed 05 October; parser FIXED, `fix(dates): parse dd/mm for eu locales`; hint WON'T FIX, `booking-v3 form retired`. Source: https://hq.mega.dev/challenges/what-it-shows#engineering-update, read 28 October 2026. The signed review records both outcomes separately. These are reported engineering results; no independent production test or retirement audit has been performed. The five qualified desk observations remain preserved and are not individually certified as resolved.
+
+This local follow-up prepares the outcome record and distinct closure reasons: parser completed, hint not planned after retirement. Publishing this follow-up, closing the two issues and sending the repo again require the owner's separate approval. No final course acceptance is implied.

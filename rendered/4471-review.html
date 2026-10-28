@@ -70,7 +70,14 @@
 Keep a separate work item for each mechanism described by the exported KB.
 The <a href="4471-original.html">original incident page</a> says “one issue, one fix queued”; its own
 rendered cause table shows otherwise. No ticket is evidence of a deployed fix.</p> <aside class="warn svelte-17bri61">This review describes the export dated 4 October 2026, not a live queue. The desk continues
-working: refresh reports and tenant configuration before moving live reports or closing a ticket.<!----></aside><!----> <h2>Problems and investigation scopes</h2> <p>The mechanisms below are specified in the exported code and supported by reporter examples.
+working: refresh reports and tenant configuration before moving live reports or closing a ticket.<!----></aside><!----> <h2>Engineering outcome reported after ticket acceptance</h2> <p>The course’s <a href="https://hq.mega.dev/challenges/what-it-shows#engineering-update" rel="nofollow">engineering update</a>,
+read on 28 October 2026, records <strong>#4471 closed 05 October</strong> with different outcomes:</p> <ul><li><strong>Parser — FIXED:</strong> <code>fix(dates): parse dd/mm for eu locales</code>.</li> <li><strong>Hint — WON’T FIX:</strong> <code>booking-v3 form retired</code>.</li></ul> <p>Close the parser work item as completed on the strength of that engineering report.
+Close the hint work item as not planned because the affected form was retired; do not
+describe that outcome as a repaired hint. This is a later status update, not a change to
+the original export’s report counts. We have not independently tested a production fix,
+verified the retirement, or established that every desk-noted observation was resolved.
+The exported data and observations below remain historical evidence. A closed ticket
+does not by itself prove that a fix shipped or that the original triage policy was sound.</p> <h2>Problems and investigation scopes</h2> <p>The mechanisms below are specified in the exported code and supported by reporter examples.
 We have not run the production parser or form. Report totals below are disjoint work-item
 scopes, not a claim that every report’s underlying cause has been verified. The independent
 body-evidence table below makes that limit visible rather than relying on a footnote.</p> <p><strong>Shared parser:</strong> the common parser reads input month first even for a tenant whose locale
@@ -110,9 +117,13 @@ Unknown tenants are not evidence of a shared cause and must stay unmerged pendin
 this classifier as a universal merge rule. Read the report, identify the product and affected
 workflow, obtain the configuration and reproduction evidence relevant to that product, and
 merge only when evidence supports the same underlying problem and fix. Preserve report IDs,
-counts and first-received dates. When evidence is missing, keep reports separate for triage.</p> <h2>Next actions and verification</h2> <ul><li>Work the linked mechanisms separately; each issue has its own narrowly defined fix and checks.</li> <li>Preserve and review desk-noted observations without counting their IDs a second time or treating
+counts and first-received dates. When evidence is missing, keep reports separate for triage.</p> <h2>Next actions and verification</h2> <ul><li>Record the engineering outcome separately on each linked issue: parser completed;
+hint not planned after retirement. The original acceptance checks remain historical;
+their execution is not established by the course’s status message.</li> <li>Preserve and review desk-noted observations without counting their IDs a second time or treating
 a footnote as proof of an additional cause.</li> <li>Review <a href="decision-0002.html">proposed decision 0002</a> with the desk owner.</li> <li>Before live triage, compare a fresh export with this snapshot by report ID, recheck tenant
 settings and add new reports without counting repeated export rows twice.</li> <li>After fixes, test both an ambiguous date and a date whose day is greater than twelve through
-each affected route. Check what the form says, what is stored and what the invite shows.</li> <li>Have the owner update operational triage guidance after approving the replacement decision.
+each affected route that remains supported. Check what the form says, what is stored and
+what the invite shows. For a retired route, verify retirement and handle any remaining
+reports instead of claiming that its former hint was repaired.</li> <li>Have the owner update operational triage guidance after approving the replacement decision.
 Decision 0001 is preserved unchanged as the accepted historical record.</li></ul> <p>Sources: <code>reports-4471.json</code>, every file in <code>data/tenants</code>, <code>desk-notes.json</code>, <code>causes.ts</code>, <code>locales.ts</code>, the rendered views above, the existing incident page and the two dated policy pages.
 Counts are computed by components from the export; quoted reporter observations remain observations.</p> <!----><p class="stamp svelte-1280m42">desk ref <b class="svelte-1280m42">DR-XZQ3-YZWV</b></p><!----><!----></main> <footer class="svelte-e2jw2j">Pages are written by people. Tables and charts are built from data at render time.</footer></div></body></html>

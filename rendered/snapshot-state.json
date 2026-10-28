@@ -195,7 +195,7 @@
         "value": "Booking on the wrong date"
       }
     ],
-    "capturedBodySha256": "30a50c027f0cc378612e5705a69de62ca8eea322f5625be46f702c37725a3e8b"
+    "capturedBodySha256": "abbc04cad005736b08f73618e2d3bbf65a4b8e188fda05319bbeefb9d93d7be6"
   },
   {
     "route": "/kb",
